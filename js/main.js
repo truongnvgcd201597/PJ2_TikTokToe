@@ -3,6 +3,9 @@ import {
     getCellElementList,
     getCurrentTurnElement,
 } from './selectors.js'
+import { checkGameStatus } from './untils.js';
+
+console.log(checkGameStatus(['X', 'O', 'O', '', 'X', '', '', 'O', 'X']))
 
 /**
  * Global variables
@@ -22,8 +25,8 @@ import {
 function handleCellClick(cell, index){
     const isClicked = cell.classList.contains(TURN.CIRCLE) || cell.classList.contains(TURN.CROSS);
     if(isClicked) return;
-    cell.classList.add(currentTurn)
-    event.preventDefault();
+    cell.classList.add(currentTurn);
+    cell.dataset.id = index;
     toggleTurn();
 }
 function initCellElementList(){
